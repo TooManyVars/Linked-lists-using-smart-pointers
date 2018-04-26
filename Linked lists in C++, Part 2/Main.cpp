@@ -18,7 +18,7 @@ int main()
 	//push a new node onto the front of the list, making it the head node.
 	//newList.pushNodeFront(19);
 
-	//push up to five nodes onto the front of the list. the head is constantly re-assigned.
+	//push up to five nodes onto the end of the list. the head is constantly re-assigned.
 	//newList.bulkNodes(79,34,55,33,2);
 
 
@@ -37,15 +37,19 @@ int main()
 	//pushes a node onto the end of the list.
 	//newList.appendNode(15);
 
+	//deletes the node on the end of the list.
+	//newList.popNode();
+
+	//inserts a new node of a particular value at a specific index.
+	//newList.insert(4, 4);
+
 	//method tests should be done here.
 
 	newList.bulkNodes(1, 2, 3, 4, 5);
-	cout << newList.head->getData() << endl;
 	newList.displayNodes();
-
-
+	
 
 	cin.get();
-	_CrtDumpMemoryLeaks(); //memory leak catcher function.
+	_CrtDumpMemoryLeaks(); //memory leak catcher function call, for the sake of safety.
 	return 0;
 }

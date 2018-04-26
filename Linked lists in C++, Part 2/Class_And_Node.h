@@ -53,5 +53,6 @@ public:
 
 
 	//functions related to a specific index of the list.
-	
+	void insert(int value, int index);
+	void deleteIndex(int index);
 };

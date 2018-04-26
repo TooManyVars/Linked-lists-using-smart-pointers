@@ -133,10 +133,70 @@ void linkedList::appendNode(int value) //there's a read access violation being t
 
 	length++;
 	
-	
+
 } 
 
 void linkedList::popNode()
 {
-	//do this in the next session.
+	//what i'm thinking we can do is just have the second to last pointer point to null, and put it into the tail node.
+
+	shared_ptr<node>currentNode;
+	shared_ptr<node>previousNode;
+
+	currentNode = head;
+
+	while (currentNode->next != nullptr)
+	{
+		previousNode = currentNode;
+		currentNode = currentNode->next;
+	}
+
+	previousNode->next = nullptr;
+	tail = previousNode;
+
+	length--;
+
+	cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
+	displayNodes();
+}
+
+
+void linkedList::insert(int value, int index)
+{
+	//firstly, check that the desired index matches the length of the list.
+	if (index <= length)
+	{		
+		//then, use a for loop to iterate through the list until you get to the desired position.
+		shared_ptr<node>newNode = make_shared<node>();
+		newNode->data = value;
+
+		shared_ptr<node>currentNode;
+		shared_ptr<node>previousNode;
+
+		currentNode = head;
+
+		for (int i = 1; i < index; i++)
+		{
+			previousNode = currentNode;
+			currentNode = currentNode->next;
+		}
+
+		//point the previous node to the newNode, and the newNode to the next node.
+		previousNode->next = newNode;
+		newNode->next = currentNode;
+		length++; //increase the lenghth of the list.
+	}
+}
+
+void linkedList::deleteIndex(int index)
+{
+	if (index <= length) //check to see if the given index was in range.
+	{
+		shared_ptr<node>currentNode;
+		shared_ptr<node>previousNode;
+
+		currentNode = head;
+
+		//finish iteration algorithim here.
+	}
 }
