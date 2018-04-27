@@ -31,23 +31,30 @@ void linkedList::assignTail()
 
 void linkedList::displayNodes()
 {
+	
 	cout << "All nodes: \n--------------------------------" << endl;
-	//create a temporary node which will point at each index. 
-	//at each index, output the data and the next node, before having the temp node point to the value of the next node.
+	gap();
+	/*create a temporary node which will point at each index. 
+	at each index, output the data and the next node, before having the temp node point to the value of the next node. **/
 	shared_ptr<node>temp;
 	temp = head;
 
 	while (temp->next != nullptr)
 	{
-		cout << "node value: " << temp->getData() << "\n" << "pointing to node at: " << temp->getNextNode() << endl;
+		cout << "-----node value: " << temp->getData() << "\n-----" << "pointing to node at: " << temp->getNextNode() << endl;
 		temp = temp->next;
 		gap();
+
+
 	}
 
 	//the very last node wasnt being output, so i output it manually.
 	cout << "node value: " << temp->getData() << "\n" << "pointing to node at: " << temp->getNextNode() << endl;
 
 	cout << "\nTotal list length: " << getLength() << endl;
+	gap();
+	cout << "--------------------------------" << endl;
+	
 }
 
 
@@ -72,6 +79,7 @@ void linkedList::deleteNodeFront()
 	head = head->next;
 
 	cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
+	gap();
 	displayNodes();
 
 	length--;
@@ -97,7 +105,7 @@ void linkedList::bulkNodes(int value1, int value2, int value3, int value4, int v
 	assignTail();
 }
 
-void linkedList::appendNode(int value) //there's a read access violation being thrown with this function here. requires re-working.
+void linkedList::appendNode(int value)
 {
 	
 	shared_ptr<node>newNode = make_shared<node>();
@@ -138,7 +146,7 @@ void linkedList::appendNode(int value) //there's a read access violation being t
 
 void linkedList::popNode()
 {
-	//what i'm thinking we can do is just have the second to last pointer point to null, and put it into the tail node.
+	//what we can do is just have the second to last pointer point to null, and put it into the tail node.
 
 	shared_ptr<node>currentNode;
 	shared_ptr<node>previousNode;
@@ -197,6 +205,24 @@ void linkedList::deleteIndex(int index)
 
 		currentNode = head;
 
-		//finish iteration algorithim here.
+		for (int i = 1; i < index; i++)
+		{
+			previousNode = currentNode;
+			currentNode = currentNode->next;
+		}
+
+		//instead of the previous node pointing to the currnent node, point it to the node that the current node is pointing at.
+		previousNode->next = currentNode->next;
+
+		length--;
+
+		cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
+		displayNodes();
 	}
+}
+
+
+void UI() //the UI for the linked list. comment this out in main if you want to manually call and test functions yourself.
+{
+	//finish.
 }

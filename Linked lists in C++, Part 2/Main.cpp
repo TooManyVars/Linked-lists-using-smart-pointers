@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Class_And_Node.h"
 
-//memory leak catchers.
+//memory leak catcher declaration.
 #define _CRTDBG_MAP_ALLOC  
 #include <stdlib.h>  
 #include <crtdbg.h>  
@@ -43,10 +43,10 @@ int main()
 	//inserts a new node of a particular value at a specific index.
 	//newList.insert(4, 4);
 
-	//method tests should be done here.
+	//delete a desired index of the array. note: will result in an exception throw if you try to call it on the first index.
+	//newList.deleteIndex(3);
 
-	newList.bulkNodes(1, 2, 3, 4, 5);
-	newList.displayNodes();
+	//[NOTE] test any methods you want to below this comment.
 	
 
 	cin.get();

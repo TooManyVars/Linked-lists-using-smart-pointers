@@ -27,8 +27,7 @@ private:
 	//this function seems to be useless at the moment.w
 	void assignTail(); //assigns a new tail node, so that if we only make the list in bulk or pushNodeFront, tail isn't null.
 
-	void gap() { cout << " " << endl; } //makes the code look nice.
-	//consider adding a function that makes the node at the end of the list a tail node.
+	void gap() { cout << " " << endl; } //used to format code desirably.
 
 public:
 
@@ -44,7 +43,6 @@ public:
 	void pushNodeFront(int value); 
 	void deleteNodeFront(); 
 	
-
 
 	//functions related to the end of the list.
 	void appendNode(int value);
