@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <list>
+#include <cstdlib>
 #include "Class_And_Node.h"
 
 //memory leak catcher declaration.
@@ -7,6 +10,34 @@
 #include <crtdbg.h>  
 
 using namespace std;
+
+void UI() //the UI for the linked list. comment this out in main if you want to manually call and test functions yourself.
+{
+
+	linkedList newOb;
+	list<string>commands = { "addStart", "deleteStart", "append","pop", "insertIndex","deleteIndex", "help", "exit" };
+	//char input;
+
+	while (true) //infinite loop.
+	{
+		string input;
+		cout << "\nEnter desired linked list command here(type 'Help' for command list):\n\n-------------------------------------------------------------------------------------\n" << endl;
+		cin >> input;
+
+		if (input == "help")
+		{
+			newOb.help();
+		}
+
+		else if (input == "exit")
+		{
+			exit(0);
+		}
+	}
+
+	//newOb.help();
+
+}
 
 int main()
 {
@@ -47,6 +78,7 @@ int main()
 	//newList.deleteIndex(3);
 
 	//[NOTE] test any methods you want to below this comment.
+	UI();
 	
 
 	cin.get();

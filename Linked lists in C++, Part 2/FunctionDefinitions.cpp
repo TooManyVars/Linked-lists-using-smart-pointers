@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <memory>
 #include "Class_And_Node.h"
 
@@ -221,8 +222,12 @@ void linkedList::deleteIndex(int index)
 	}
 }
 
-
-void UI() //the UI for the linked list. comment this out in main if you want to manually call and test functions yourself.
+void linkedList::help()
 {
-	//finish.
+	cout << "\n-------------------------------------------------------------------------------------" << endl;
+	cout << "Options\n\n\n----------------[Functions related to the start of the list]-------------------------\n\n-addStart: adds a node to the front of the list.\n\n-deleteStart: deletes a node currently at the start of the list.\n" << endl;
+	cout << "----------------[Functions related to the end of the list]---------------------------\n\n-append: adds a node to the front of the list.\n\n-pop: deletes a node currently at the end of the list.\n" << endl;
+	cout << "----------------[Functions related to a particular index of the list]----------------\n\n-insertIndex: adds a node a desired position in the list.\n\n-deleteIndex: deletes a desired index in the list.\n" << endl;
+	cout << "----------------[Miscellaneous methods]----------------------------------------------\n\n-exit: Exits the program.\n" << endl;
+	cout << "-------------------------------------------------------------------------------------" << endl;
 }
