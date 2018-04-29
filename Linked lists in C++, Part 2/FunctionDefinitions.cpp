@@ -225,9 +225,9 @@ void linkedList::deleteIndex(int index)
 void linkedList::help()
 {
 	cout << "\n-------------------------------------------------------------------------------------" << endl;
-	cout << "Options\n\n\n----------------[Functions related to the start of the list]-------------------------\n\n-addStart: adds a node to the front of the list.\n\n-deleteStart: deletes a node currently at the start of the list.\n" << endl;
+	cout << "Command list\n\n\n----------------[Functions related to the start of the list]-------------------------\n\n-addStart: adds a node to the front of the list.\n\n-deleteStart: deletes a node currently at the start of the list.\n" << endl;
 	cout << "----------------[Functions related to the end of the list]---------------------------\n\n-append: adds a node to the front of the list.\n\n-pop: deletes a node currently at the end of the list.\n" << endl;
 	cout << "----------------[Functions related to a particular index of the list]----------------\n\n-insertIndex: adds a node a desired position in the list.\n\n-deleteIndex: deletes a desired index in the list.\n" << endl;
-	cout << "----------------[Miscellaneous methods]----------------------------------------------\n\n-exit: Exits the program.\n" << endl;
+	cout << "----------------[Miscellaneous methods]----------------------------------------------\n\n-exit: Exits the program.\n\n-display: shows all the nodes within the list. \n" << endl;
 	cout << "-------------------------------------------------------------------------------------" << endl;
 }

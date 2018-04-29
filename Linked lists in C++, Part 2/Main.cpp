@@ -14,8 +14,8 @@ using namespace std;
 void UI() //the UI for the linked list. comment this out in main if you want to manually call and test functions yourself.
 {
 
-	linkedList newOb;
-	list<string>commands = { "addStart", "deleteStart", "append","pop", "insertIndex","deleteIndex", "help", "exit" };
+	linkedList newList;
+	list<string>commands = { "display","addStart", "deleteStart", "append","pop", "insertIndex","deleteIndex", "help", "exit" };
 	//char input;
 
 	while (true) //infinite loop.
@@ -26,16 +26,33 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 
 		if (input == "help")
 		{
-			newOb.help();
+			newList.help();
 		}
 
 		else if (input == "exit")
 		{
 			exit(0);
 		}
+
+		else if (input == "display")
+		{
+			newList.displayNodes();
+		}
+
+		else if (input == "addStart")
+		{
+			int value = 0;
+			cout << "------------------------------------------------------------------------------------" << endl;
+			cout << "\nPlease enter the desired value of the node: " << endl;
+			cin >> value; //the program spazzes when you enter something other than an integer.
+
+			newList.pushNodeFront(value);
+
+			cout << "\nA new node was pushed to the front of the list, with value " << value << "." << endl;
+		}
 	}
 
-	//newOb.help();
+	//newList.help();
 
 }
 
@@ -78,8 +95,11 @@ int main()
 	//newList.deleteIndex(3);
 
 	//[NOTE] test any methods you want to below this comment.
-	UI();
-	
+
+	//UI(); //current bug: i get a read access violation when calling displayNodes within the UI function, but not within main.
+	linkedList n;
+	n.bulkNodes(1, 2, 34, 45);
+	n.displayNodes();
 
 	cin.get();
 	_CrtDumpMemoryLeaks(); //memory leak catcher function call, for the sake of safety.
