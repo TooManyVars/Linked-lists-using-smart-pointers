@@ -56,5 +56,6 @@ public:
 
 	//misellaneous functionality.
 	void help();
+	void emptyList() { cout << "--------------------------------\nThere were no nodes within the list to delete. method terminated.\n--------------------------------" << endl; }
 
 };

@@ -33,27 +33,35 @@ void linkedList::assignTail()
 void linkedList::displayNodes()
 {
 	
-	cout << "All nodes: \n--------------------------------" << endl;
-	gap();
-	/*create a temporary node which will point at each index. 
-	at each index, output the data and the next node, before having the temp node point to the value of the next node. **/
-	shared_ptr<node>temp;
-	temp = head;
-
-	while (temp->next != nullptr)
+	if (length == 0)
 	{
-		cout << "-----node value: " << temp->getData() << "\n-----" << "pointing to node at: " << temp->getNextNode() << endl;
-		temp = temp->next;
-		gap();
-
-
+		cout << "\n[List is empty, perhaps add some nodes.]" << endl;
 	}
 
-	//the very last node wasnt being output, so i output it manually.
-	cout << "node value: " << temp->getData() << "\n" << "pointing to node at: " << temp->getNextNode() << endl;
+	else if (length > 0)
+	{
+		cout << "All nodes: \n--------------------------------" << endl;
+		gap();
+		/*create a temporary node which will point at each index.
+		at each index, output the data and the next node, before having the temp node point to the value of the next node. **/
+		shared_ptr<node>temp;
+		temp = head;
 
-	cout << "\nTotal list length: " << getLength() << endl;
-	gap();
+		while (temp->next != nullptr)
+		{
+			cout << "-----node value: " << temp->getData() << "\n-----" << "pointing to node at: " << temp->getNextNode() << endl;
+			temp = temp->next;
+			gap();
+		}
+
+		//the very last node wasnt being output, so i output it manually.
+		cout << "node value: " << temp->getData() << "\n" << "pointing to node at: " << temp->getNextNode() << endl;
+
+		cout << "\nTotal list length: " << getLength() << endl;
+		gap();
+	}
+
+
 	cout << "--------------------------------" << endl;
 	
 }
@@ -72,16 +80,34 @@ void linkedList::pushNodeFront(int value)
 
 }
 
-void linkedList::deleteNodeFront()
+void linkedList::deleteNodeFront()//right now, the delete node front method throws an exception when trying to delete a node from the front of the list when there are only two nodes.
 {
 
 	//process:
-	//re-assign the head node. that's it.
-	head = head->next;
+	//re-assign the head node if the length of the list is more than 1. if it isn't, make the head point to null.
 
-	cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
-	gap();
-	displayNodes();
+	if (length == 0)
+	{
+		emptyList();
+	}
+
+	else if (length <= 1)
+	{
+		head = nullptr;
+		cout << "--------------------------------\nNode has now been deleted.\n--------------------------------" << endl;
+	}
+
+	else if (length > 1)
+	{
+		head = head->next;
+
+		cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
+		gap();
+		displayNodes();
+	}
+
+
+
 
 	length--;
 
@@ -228,6 +254,6 @@ void linkedList::help()
 	cout << "Command list\n\n\n----------------[Functions related to the start of the list]-------------------------\n\n-addStart: adds a node to the front of the list.\n\n-deleteStart: deletes a node currently at the start of the list.\n" << endl;
 	cout << "----------------[Functions related to the end of the list]---------------------------\n\n-append: adds a node to the front of the list.\n\n-pop: deletes a node currently at the end of the list.\n" << endl;
 	cout << "----------------[Functions related to a particular index of the list]----------------\n\n-insertIndex: adds a node a desired position in the list.\n\n-deleteIndex: deletes a desired index in the list.\n" << endl;
-	cout << "----------------[Miscellaneous methods]----------------------------------------------\n\n-exit: Exits the program.\n\n-display: shows all the nodes within the list. \n" << endl;
+	cout << "----------------[Miscellaneous methods]----------------------------------------------\n\n-exit: Exits the program.\n\n-display: shows all the nodes within the list(throws an exception if the list is empty). \n" << endl;
 	cout << "-------------------------------------------------------------------------------------" << endl;
 }

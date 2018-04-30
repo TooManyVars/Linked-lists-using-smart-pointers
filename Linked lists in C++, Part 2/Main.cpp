@@ -50,6 +50,11 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 
 			cout << "\nA new node was pushed to the front of the list, with value " << value << "." << endl;
 		}
+
+		else if (input == "deleteStart")
+		{
+			newList.deleteNodeFront();
+		}
 	}
 
 	//newList.help();
@@ -96,10 +101,10 @@ int main()
 
 	//[NOTE] test any methods you want to below this comment.
 
-	//UI(); //current bug: i get a read access violation when calling displayNodes within the UI function, but not within main.
-	linkedList n;
-	n.bulkNodes(1, 2, 34, 45);
-	n.displayNodes();
+	UI(); //current bug: i get a read access violation when calling displayNodes within the UI function, but not within main.
+	//linkedList n;
+	//n.bulkNodes(1, 2, 34, 45);
+	//n.displayNodes();
 
 	cin.get();
 	_CrtDumpMemoryLeaks(); //memory leak catcher function call, for the sake of safety.
