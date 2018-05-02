@@ -32,7 +32,6 @@ private:
 public:
 
 	int getLength() { return length; }
-
 	shared_ptr<node>head;
 	shared_ptr<node>tail;
 

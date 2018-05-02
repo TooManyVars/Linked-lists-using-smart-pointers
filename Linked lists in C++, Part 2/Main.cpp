@@ -58,50 +58,10 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 
 		else if (input == "bulk")
 		{
-			int values = 0; //the amount of nodes the user wants to create.
 
-			cout << "------------------------------------------------------------------------------------" << endl;
-			cout << "\nHow many nodes would you like to create?" << endl;
-			cin >> values;
-
-			//loop input until it is 5 or lower, or higher than 0.
-			while (values > 5 || values <= 0)
-			{
-				cout << "\nNumber of desired nodes is not within the range 0 to 5, please re-enter:" << endl;
-				cin >> values; //causes a stack overflow error? either way, entering a number too high(or not a number at all, say, maybe a string or float causes some kind of infinite loop
-			}
-
-			//depending on the amount of desired nodes to be entered, an array of that size is created.
-			///const int constNodes = values; //put the values into a const variable, given that when creating the array, the number of elements have to be const.
+			//algorithim: get 5 inputs from the user. if they only want say, three values, for example, they could fill the data of the remaining nodes with "000".
 
 
-			//we need to make values(the number of nodes the user wants to create) into a const variable, so that we can use said value to create the list.
-
-
-			//perhaps creating a function that returns a const int will surfice(https://code.sololearn.com/ccY4RQopFO3a/#cpp).
-
-
-			///int nodes[constNodes] = {};
-
-			//if (values == 1)
-			//{
-			//	list<int>nodes = { NULL };
-			//}
-
-			//else if (values == 2)
-			//{
-			//	list<int>nodes = { NULL, NULL };
-			//}
-
-			//else if (values == 3)
-			//{
-			//	list<int>nodes = { NULL, NULL, NULL };
-			//}
-
-			//else if (values = 4)
-			//{
-
-			//}
 		}
 
 	}
