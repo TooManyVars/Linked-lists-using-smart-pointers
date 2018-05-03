@@ -35,7 +35,7 @@ void linkedList::displayNodes()
 	
 	if (length == 0)
 	{
-		cout << "\n[List is empty, perhaps add some nodes.]" << endl;
+		cout << "\n[List is empty, perhaps add some nodes?]" << endl;
 	}
 
 	else if (length > 0)
@@ -55,7 +55,7 @@ void linkedList::displayNodes()
 		}
 
 		//the very last node wasnt being output, so i output it manually.
-		cout << "node value: " << temp->getData() << "\n" << "pointing to node at: " << temp->getNextNode() << endl;
+		cout << "-----node value: " << temp->getData() << "\n-----" << "pointing to node at: " << temp->getNextNode() << endl;
 
 		cout << "\nTotal list length: " << getLength() << endl;
 		gap();
@@ -130,6 +130,8 @@ void linkedList::bulkNodes(int value1, int value2, int value3, int value4, int v
 	}
 
 	assignTail();
+
+	cout << "\nNew node(s) successfully added to the front of the list." << endl;
 }
 
 void linkedList::appendNode(int value)
@@ -167,32 +169,44 @@ void linkedList::appendNode(int value)
 	}
 
 	length++;
+
+	cout << "\n A new node has been appended to the end of the list." << endl;
 	
 
 } 
 
-void linkedList::popNode()
+void linkedList::popNode() //currently expiriencing problems in which popping with a list with a length of 1 or lower causes an exception throw.
 {
 	//what we can do is just have the second to last pointer point to null, and put it into the tail node.
 
-	shared_ptr<node>currentNode;
-	shared_ptr<node>previousNode;
-
-	currentNode = head;
-
-	while (currentNode->next != nullptr)
+	if (length > 0)
 	{
-		previousNode = currentNode;
-		currentNode = currentNode->next;
+		shared_ptr<node>currentNode;
+		shared_ptr<node>previousNode;
+
+		currentNode = head;
+
+		while (currentNode->next != nullptr)
+		{
+			previousNode = currentNode;
+			currentNode = currentNode->next;
+		}
+
+		previousNode->next = nullptr;
+		tail = previousNode;
+
+		length--;
+
+		cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
+		displayNodes();
 	}
 
-	previousNode->next = nullptr;
-	tail = previousNode;
+	else
+	{
+		cout << "\nThe list is empty, meaning that there was nothing to delete. terminating action pop()." << endl;
+	}
 
-	length--;
 
-	cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
-	displayNodes();
 }
 
 

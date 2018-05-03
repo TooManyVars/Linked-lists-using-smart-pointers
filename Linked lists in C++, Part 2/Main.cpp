@@ -59,15 +59,36 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 		else if (input == "bulk")
 		{
 
-			//algorithim: get 5 inputs from the user. if they only want say, three values, for example, they could fill the data of the remaining nodes with "000".
+			//algorithim: have an array of five values; iterate through the array and get input for each index, and then call the bulk nodes functionality, using the five indexes.
 
+			int inputs[5] = {};
 
+			for (int index = 0; index <= (sizeof(inputs) / sizeof(int) - 1); index++)
+			{
+				cout << "\nPlease enter the value of node " << index + 1 << ": " << endl;
+				cin >> inputs[index];
+			}
+
+			newList.bulkNodes(inputs[0], inputs[1],inputs[2], inputs[3], inputs[4]);
+		}
+
+		else if (input == "append")
+		{
+			int value = 0;
+			cout << "\nEnter the desired value of the node: " << endl;
+			cin >> value;
+			newList.appendNode(value);
+		}
+
+		else if (input == "pop")
+		{
+			newList.popNode();
 		}
 
 	}
 
 	//newList.help();
-
+	
 }
 
 int main()
