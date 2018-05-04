@@ -85,6 +85,32 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			newList.popNode();
 		}
 
+		else if (input == "insertIndex")
+		{
+			int value = 0;
+			cout << "\nEnter the desired value of the node:" << endl;
+			cin >> value;
+
+			int index = 0;
+			cout << "\nEnter the desired index you wish to insert the node:" << endl;
+			cin >> index;
+
+			if(newList.getLength() == 0) //check if the list is empty. if it is, simply append the given node.
+			{
+				cout << "\nList was previously empty: appending node to the end of the list." << endl;
+				newList.appendNode(value);
+			}
+
+			else if (newList.getLength() > 0)
+			{
+				newList.insert(value, index);
+				cout << "Node of value " << value << " was successfully added at index " << index << "." << endl;
+			}
+
+			
+			newList.insert(value, index);
+		}
+
 	}
 
 	//newList.help();

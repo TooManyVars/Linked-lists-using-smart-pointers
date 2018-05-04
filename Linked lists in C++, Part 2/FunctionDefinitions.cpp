@@ -94,6 +94,7 @@ void linkedList::deleteNodeFront()//right now, the delete node front method thro
 	else if (length <= 1)
 	{
 		head = nullptr;
+		length--;
 		cout << "--------------------------------\nNode has now been deleted.\n--------------------------------" << endl;
 	}
 
@@ -101,15 +102,12 @@ void linkedList::deleteNodeFront()//right now, the delete node front method thro
 	{
 		head = head->next;
 
+		length--;
+
 		cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
 		gap();
 		displayNodes();
 	}
-
-
-
-
-	length--;
 
 }
 
@@ -179,7 +177,21 @@ void linkedList::popNode() //currently expiriencing problems in which popping wi
 {
 	//what we can do is just have the second to last pointer point to null, and put it into the tail node.
 
-	if (length > 0)
+
+	//if statment checking if there is only one node in the array. if there is, don't try to iterate through the array(that will cause an exception to be thrown), simply make head and tail nullptr.
+	if (length == 1)
+	{
+		tail = nullptr;
+		head = nullptr;
+
+		length--;
+
+		cout << "--------------------------------\nA node has now been deleted from the end of the list. Showing updated list.\n--------------------------------" << endl;
+		displayNodes();
+	}
+
+
+	 else if (length > 0)
 	{
 		shared_ptr<node>currentNode;
 		shared_ptr<node>previousNode;
@@ -197,24 +209,21 @@ void linkedList::popNode() //currently expiriencing problems in which popping wi
 
 		length--;
 
-		cout << "--------------------------------\nA node has now been deleted from the front of the list. Showing updated list.\n--------------------------------" << endl;
+		cout << "--------------------------------\nA node has now been deleted from the end of the list. Showing updated list.\n--------------------------------" << endl;
 		displayNodes();
 	}
 
 	else
 	{
-		cout << "\nThe list is empty, meaning that there was nothing to delete. terminating action pop()." << endl;
+		cout << "\nThe list is empty, meaning that there was nothing to delete from the end of the list. terminating action pop()." << endl;
 	}
 
 
 }
 
 
-void linkedList::insert(int value, int index)
+void linkedList::insert(int value, int index) //needs rigourus testing and improvements.
 {
-	//firstly, check that the desired index matches the length of the list.
-	if (index <= length)
-	{		
 		//then, use a for loop to iterate through the list until you get to the desired position.
 		shared_ptr<node>newNode = make_shared<node>();
 		newNode->data = value;
@@ -234,7 +243,6 @@ void linkedList::insert(int value, int index)
 		previousNode->next = newNode;
 		newNode->next = currentNode;
 		length++; //increase the lenghth of the list.
-	}
 }
 
 void linkedList::deleteIndex(int index)
