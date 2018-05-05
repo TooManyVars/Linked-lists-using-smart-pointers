@@ -95,7 +95,7 @@ void linkedList::deleteNodeFront()//right now, the delete node front method thro
 	{
 		head = nullptr;
 		length--;
-		cout << "--------------------------------\nNode has now been deleted.\n--------------------------------" << endl;
+		cout << "--------------------------------\nHead node has now been deleted. list should now be empty.\n--------------------------------" << endl;
 	}
 
 	else if (length > 1)
@@ -224,9 +224,11 @@ void linkedList::popNode() //currently expiriencing problems in which popping wi
 
 void linkedList::insert(int value, int index) //needs rigourus testing and improvements.
 {
+
 		//then, use a for loop to iterate through the list until you get to the desired position.
 		shared_ptr<node>newNode = make_shared<node>();
 		newNode->data = value;
+
 
 		shared_ptr<node>currentNode;
 		shared_ptr<node>previousNode;
@@ -278,4 +280,15 @@ void linkedList::help()
 	cout << "----------------[Functions related to a particular index of the list]----------------\n\n-insertIndex: adds a node a desired position in the list.\n\n-deleteIndex: deletes a desired index in the list.\n" << endl;
 	cout << "----------------[Miscellaneous methods]----------------------------------------------\n\n-exit: Exits the program.\n\n-display: shows all the nodes within the list(throws an exception if the list is empty). \n" << endl;
 	cout << "-------------------------------------------------------------------------------------" << endl;
+}
+
+void linkedList::clear()
+{
+	//how we're gonna "clear" the list is by making the head point to null. why i use "clear" is becaue it doesn't technically return memory to the computer, but simply makes the nodes within the list unavailiable.
+
+	head = nullptr;
+	length = 0;
+
+	cout << "--------------------------------\nLinked list has now been cleared.\n--------------------------------" << endl;
+
 }

@@ -11,18 +11,41 @@
 
 using namespace std;
 
+bool linearSearch(string word, list<string> arr) //iterates through a list. returns true if the search was successful.
+{
+
+
+	//check out how to iterate through lists in c++. alternatively, you could also use an array.
+
+	//for (int index = 0; index < arr.size; index++)
+	//{
+	//	if (arr[index] == word)
+	//	{
+	//		return true;
+	//	}
+	//}
+
+	//return false;
+
+}
+
 void UI() //the UI for the linked list. comment this out in main if you want to manually call and test functions yourself.
 {
 
 	linkedList newList;
-	list<string>commands = { "display","addStart", "deleteStart", "append","pop", "insertIndex","deleteIndex", "help", "exit", "bulk" };
-	//char input;
+	list<string>commands = { "display","addStart", "deleteStart", "append","pop", "insertIndex","deleteIndex", "help", "exit", "bulk", "clear" };
 
 	while (true) //infinite loop.
 	{
 		string input;
-		cout << "\nEnter desired linked list command here(type 'Help' for command list):\n\n-------------------------------------------------------------------------------------\n" << endl;
+		cout << "\nEnter desired command here(type 'Help' for command list):\n\n-------------------------------------------------------------------------------------\n" << endl;
 		cin >> input;
+
+		//add an iteration and input algorithim here to process incorrect input. when deleteindex and insertIndex are called, create while loop if the length is shorter than two.
+
+
+
+
 
 		if (input == "help")
 		{
@@ -45,9 +68,7 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			cout << "------------------------------------------------------------------------------------" << endl;
 			cout << "\nPlease enter the desired value of the node: " << endl;
 			cin >> value; //the program spazzes when you enter something other than an integer.
-
 			newList.pushNodeFront(value);
-
 			cout << "\nA new node was pushed to the front of the list, with value " << value << "." << endl;
 		}
 
@@ -60,15 +81,12 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 		{
 
 			//algorithim: have an array of five values; iterate through the array and get input for each index, and then call the bulk nodes functionality, using the five indexes.
-
 			int inputs[5] = {};
-
 			for (int index = 0; index <= (sizeof(inputs) / sizeof(int) - 1); index++)
 			{
 				cout << "\nPlease enter the value of node " << index + 1 << ": " << endl;
 				cin >> inputs[index];
 			}
-
 			newList.bulkNodes(inputs[0], inputs[1],inputs[2], inputs[3], inputs[4]);
 		}
 
@@ -85,7 +103,7 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			newList.popNode();
 		}
 
-		else if (input == "insertIndex")
+		else if (input == "insertIndex") //from testing the code, what i can see is that the maximum index that you can insert at is the list length + 1.
 		{
 			int value = 0;
 			cout << "\nEnter the desired value of the node:" << endl;
@@ -95,20 +113,35 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			cout << "\nEnter the desired index you wish to insert the node:" << endl;
 			cin >> index;
 
-			if(newList.getLength() == 0) //check if the list is empty. if it is, simply append the given node.
+			while (index < 0 || index >= newList.getLength() + 1)
 			{
-				cout << "\nList was previously empty: appending node to the end of the list." << endl;
-				newList.appendNode(value);
+				cout << "Given index is outside of the scope of the array. please give an index in the range 0 to " << newList.getLength() << "." << endl;
+				cin >> index;
 			}
 
-			else if (newList.getLength() > 0)
-			{
-				newList.insert(value, index);
-				cout << "Node of value " << value << " was successfully added at index " << index << "." << endl;
-			}
-
-			
 			newList.insert(value, index);
+			cout << "Node of value " << value << " was successfully added at index " << index << "." << endl;
+		}
+
+		else if (input == "deleteIndex")
+		{
+
+			int index = 0;
+			cout << "\nEnter the desired index of the node you wish to delete:" << endl;
+			cin >> index;
+
+			while (index < 0 || index >= newList.getLength() + 1)
+			{
+				cout << "Given index is outside of the scope of the array. please give an index in the range 0 to " << newList.getLength() << "." << endl;
+				cin >> index;
+			}
+
+			newList.deleteIndex(index);
+		}
+
+		else if (input == "clear")
+		{
+			newList.clear();
 		}
 
 	}
