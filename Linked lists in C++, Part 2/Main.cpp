@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <list>
-#include <cstdlib>
 #include "Class_And_Node.h"
 
 //memory leak catcher declaration.
@@ -11,38 +10,45 @@
 
 using namespace std;
 
-bool linearSearch(string word, list<string> arr) //iterates through a list. returns true if the search was successful.
+bool linearSearch(string word, string arr[], size_t length) //iterates through a list. returns true if the search was successful. take the size of the list as a parameter, in order to accurately get the size of a string array.
 {
-
-
 	//check out how to iterate through lists in c++. alternatively, you could also use an array.
+	//cout << "Size of array:" <<  sizeof(arr)/sizeof(string) << endl;
+	for ( unsigned int index = 0; index < length; index++) //made the iterator an unsigned int to avoid signed / unsigned warning.
+	{
+		if (word == arr[index])
+		{
+			return true;
+		}
+	}
 
-	//for (int index = 0; index < arr.size; index++)
-	//{
-	//	if (arr[index] == word)
-	//	{
-	//		return true;
-	//	}
-	//}
-
-	//return false;
-
+	return false;
 }
 
 void UI() //the UI for the linked list. comment this out in main if you want to manually call and test functions yourself.
 {
 
 	linkedList newList;
-	list<string>commands = { "display","addStart", "deleteStart", "append","pop", "insertIndex","deleteIndex", "help", "exit", "bulk", "clear" };
+	string commands[] = { "display","addStart", "deleteStart", "append","pop", "insert","deleteIndex", "help", "exit", "bulk", "clear" };
 
 	while (true) //infinite loop.
 	{
 		string input;
-		cout << "\nEnter desired command here(type 'Help' for command list):\n\n-------------------------------------------------------------------------------------\n" << endl;
+		cout << "\nEnter desired command here(type 'help' for command list):\n\n-------------------------------------------------------------------------------------\n" << endl;
 		cin >> input;
 
 		//add an iteration and input algorithim here to process incorrect input. when deleteindex and insertIndex are called, create while loop if the length is shorter than two.
+		while ( linearSearch(input,commands, sizeof(commands) / sizeof(string)) != true )
+		{
+			cout << "\nDesired commands is invalid, please re-enter(type 'help' for a list of commands): " << endl;
+			cin >> input;
+		}
 
+		while ( (input == "insert" || input == "deleteIndex") && newList.getLength() < 2) //protects the user from trying to insert/delete an index that doesn't exist.
+		{
+			cout << "\nYou cannot use the command " << input << " on a list with less than 2 values, please re-enter: " << endl;
+			cin >> input;
+		}
 
 
 
@@ -103,7 +109,7 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			newList.popNode();
 		}
 
-		else if (input == "insertIndex") //from testing the code, what i can see is that the maximum index that you can insert at is the list length + 1.
+		else if (input == "insert") //from testing the code, what i can see is that the maximum index that you can insert at is the list length + 1.
 		{
 			int value = 0;
 			cout << "\nEnter the desired value of the node:" << endl;
@@ -113,7 +119,7 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			cout << "\nEnter the desired index you wish to insert the node:" << endl;
 			cin >> index;
 
-			while (index < 0 || index >= newList.getLength() + 1)
+			while (index <= 0 || index >= newList.getLength() + 1)
 			{
 				cout << "Given index is outside of the scope of the array. please give an index in the range 0 to " << newList.getLength() << "." << endl;
 				cin >> index;
@@ -130,7 +136,7 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			cout << "\nEnter the desired index of the node you wish to delete:" << endl;
 			cin >> index;
 
-			while (index < 0 || index >= newList.getLength() + 1)
+			while (index <= 0 || index >= newList.getLength() + 1)
 			{
 				cout << "Given index is outside of the scope of the array. please give an index in the range 0 to " << newList.getLength() << "." << endl;
 				cin >> index;
