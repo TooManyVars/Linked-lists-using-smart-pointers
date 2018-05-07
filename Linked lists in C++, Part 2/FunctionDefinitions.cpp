@@ -277,7 +277,7 @@ void linkedList::help()
 	cout << "\n-------------------------------------------------------------------------------------" << endl;
 	cout << "Command list\n\n\n----------------[Functions related to the start of the list]-------------------------\n\n-addStart: adds a node to the front of the list.\n\n-deleteStart: deletes a node currently at the start of the list.\n" << endl;
 	cout << "----------------[Functions related to the end of the list]---------------------------\n\n-append: adds a node to the front of the list.\n\n-pop: deletes a node currently at the end of the list.\n" << endl;
-	cout << "----------------[Functions related to a particular index of the list]----------------\n\n-insertIndex: adds a node a desired position in the list.\n\n-deleteIndex: deletes a desired index in the list.\n" << endl;
+	cout << "----------------[Functions related to a particular index of the list]----------------\n\n-insertIndex: adds a node a desired position in the list(inbetween two values).\n\n-deleteIndex: deletes a desired index in the list(also inbetween two values).\n" << endl;
 	cout << "----------------[Miscellaneous methods]----------------------------------------------\n\n-exit: Exits the program.\n\n-display: shows all the nodes within the list(throws an exception if the list is empty). \n" << endl;
 	cout << "-------------------------------------------------------------------------------------" << endl;
 }
@@ -287,6 +287,7 @@ void linkedList::clear()
 	//how we're gonna "clear" the list is by making the head point to null. why i use "clear" is becaue it doesn't technically return memory to the computer, but simply makes the nodes within the list unavailiable.
 
 	head = nullptr;
+	tail = nullptr;
 	length = 0;
 
 	cout << "--------------------------------\nLinked list has now been cleared.\n--------------------------------" << endl;

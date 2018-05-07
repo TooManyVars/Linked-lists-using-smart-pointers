@@ -119,9 +119,9 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			cout << "\nEnter the desired index you wish to insert the node:" << endl;
 			cin >> index;
 
-			while (index <= 0 || index >= newList.getLength() + 1)
+			while (index <= 1 || index >= newList.getLength() + 1)
 			{
-				cout << "Given index is outside of the scope of the array. please give an index in the range 0 to " << newList.getLength() << "." << endl;
+				cout << "Given index is outside of the scope of the array. please give an index in the range 1 to " << newList.getLength() << "." << endl;
 				cin >> index;
 			}
 
@@ -136,9 +136,9 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			cout << "\nEnter the desired index of the node you wish to delete:" << endl;
 			cin >> index;
 
-			while (index <= 0 || index >= newList.getLength() + 1)
+			while (index <= 1 || index >= newList.getLength() + 1)
 			{
-				cout << "Given index is outside of the scope of the array. please give an index in the range 0 to " << newList.getLength() << "." << endl;
+				cout << "Given index is outside of the scope of the array. please give an index in the range 1 to " << newList.getLength() << "." << endl;
 				cin >> index;
 			}
 
