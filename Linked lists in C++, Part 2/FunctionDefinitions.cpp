@@ -80,7 +80,7 @@ void linkedList::pushNodeFront(int value)
 
 }
 
-void linkedList::deleteNodeFront()//right now, the delete node front method throws an exception when trying to delete a node from the front of the list when there are only two nodes.
+void linkedList::deleteNodeFront()
 {
 
 	//process:
@@ -168,15 +168,14 @@ void linkedList::appendNode(int value)
 
 	length++;
 
-	cout << "\n A new node has been appended to the end of the list." << endl;
+	cout << "\nA new node has been appended to the end of the list." << endl;
 	
 
 } 
 
-void linkedList::popNode() //currently expiriencing problems in which popping with a list with a length of 1 or lower causes an exception throw.
+void linkedList::popNode() 
 {
 	//what we can do is just have the second to last pointer point to null, and put it into the tail node.
-
 
 	//if statment checking if there is only one node in the array. if there is, don't try to iterate through the array(that will cause an exception to be thrown), simply make head and tail nullptr.
 	if (length == 1)
@@ -191,7 +190,7 @@ void linkedList::popNode() //currently expiriencing problems in which popping wi
 	}
 
 
-	 else if (length > 0)
+	 else if (length > 0) //otherwise, we can used the originally proposed algorithim.
 	{
 		shared_ptr<node>currentNode;
 		shared_ptr<node>previousNode;
@@ -222,7 +221,7 @@ void linkedList::popNode() //currently expiriencing problems in which popping wi
 }
 
 
-void linkedList::insert(int value, int index) //needs rigourus testing and improvements.
+void linkedList::insert(int value, int index)
 {
 
 		//then, use a for loop to iterate through the list until you get to the desired position.

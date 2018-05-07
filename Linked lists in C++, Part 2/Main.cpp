@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <list>
 #include "Class_And_Node.h"
 
 //memory leak catcher declaration.
@@ -12,8 +11,6 @@ using namespace std;
 
 bool linearSearch(string word, string arr[], size_t length) //iterates through a list. returns true if the search was successful. take the size of the list as a parameter, in order to accurately get the size of a string array.
 {
-	//check out how to iterate through lists in c++. alternatively, you could also use an array.
-	//cout << "Size of array:" <<  sizeof(arr)/sizeof(string) << endl;
 	for ( unsigned int index = 0; index < length; index++) //made the iterator an unsigned int to avoid signed / unsigned warning.
 	{
 		if (word == arr[index])
@@ -31,7 +28,7 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 	linkedList newList;
 	string commands[] = { "display","addStart", "deleteStart", "append","pop", "insert","deleteIndex", "help", "exit", "bulk", "clear" };
 
-	while (true) //infinite loop.
+	while (true) //infinite loop until the command "exit" is ran.
 	{
 		string input;
 		cout << "\nEnter desired command here(type 'help' for command list):\n\n-------------------------------------------------------------------------------------\n" << endl;
@@ -44,14 +41,11 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			cin >> input;
 		}
 
-		while ( (input == "insert" || input == "deleteIndex") && newList.getLength() < 2) //protects the user from trying to insert/delete an index that doesn't exist.
+		while ( (input == "insert" || input == "deleteIndex") && newList.getLength() < 2) //protects the user from trying to insert/delete an index that doesn't exist, throwing an exception.
 		{
 			cout << "\nYou cannot use the command " << input << " on a list with less than 2 values, please re-enter: " << endl;
 			cin >> input;
 		}
-
-
-
 
 		if (input == "help")
 		{
@@ -152,7 +146,6 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 
 	}
 
-	//newList.help();
 	
 }
 
@@ -191,17 +184,14 @@ int main()
 	//inserts a new node of a particular value at a specific index.
 	//newList.insert(4, 4);
 
-	//delete a desired index of the array. note: will result in an exception throw if you try to call it on the first index.
+	//delete a desired index of the array. note: may result in an exception throw if you try to call it on the first index(luckily i've put some precautions in place).
 	//newList.deleteIndex(3);
 
-	//[NOTE] test any methods you want to below this comment.
+	//[NOTE] test any methods you want to below this comment, so that you may always know what methods you can use.
 
-	UI(); //current bug: i get a read access violation when calling displayNodes within the UI function, but not within main.
-	//linkedList n;
-	//n.bulkNodes(1, 2, 34, 45);
-	//n.displayNodes();
+	UI();
 
 	cin.get();
-	_CrtDumpMemoryLeaks(); //memory leak catcher function call, for the sake of safety.
+	_CrtDumpMemoryLeaks(); //memory leak catcher function call, to ensure no memory is leaked. it's a bit overkill, i know, but memory can be still leaked, in extreme cases, via smart pointers.
 	return 0;
 }

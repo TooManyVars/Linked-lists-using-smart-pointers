@@ -18,20 +18,19 @@ public:
 
 class linkedList
 {
-	//function overview in the main() file.
+	//The full function overview in the main.cpp file.
 
 private:
-	//essentially reports how many nodes are in the list.
+	//essentially reports how many nodes are in the list. private because there's not much need to make it otherwise.
 	int length;
 
-	//this function seems to be useless at the moment.w
-	void assignTail(); //assigns a new tail node, so that if we only make the list in bulk or pushNodeFront, tail isn't null.
+	void assignTail(); //assigns a new tail node, so that if we only make the list using the method pushNodeFront, tail isn't null.
 
-	void gap() { cout << " " << endl; } //used to format code desirably.
+	void gap() { cout << " " << endl; } //helper method used to format code desirably.
 
 public:
 
-	int getLength() { return length; }
+	int getLength() { return length; } //getter function for length.
 	shared_ptr<node>head;
 	shared_ptr<node>tail;
 
