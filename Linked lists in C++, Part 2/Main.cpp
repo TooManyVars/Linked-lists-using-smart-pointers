@@ -18,7 +18,6 @@ bool linearSearch(string word, string arr[], size_t length) //iterates through a
 			return true;
 		}
 	}
-
 	return false;
 }
 
@@ -112,6 +111,17 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			int index = 0;
 			cout << "\nEnter the desired index you wish to insert the node:" << endl;
 			cin >> index;
+
+			//the repo i'm using to prototype: https://repl.it/@NasirMuhammad/Bad-input-handling-in-C
+			//Currently trying to handle incorrect data types.
+
+			//while (cin.fail() == true)
+			//{
+			//	cin.clear();
+			//	cin >> index;
+			//}
+
+
 
 			while (index <= 1 || index >= newList.getLength() + 1)
 			{
