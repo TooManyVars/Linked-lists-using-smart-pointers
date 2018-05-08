@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <limits>
 #include "Class_And_Node.h"
 
 //memory leak catcher declaration.
@@ -8,6 +9,26 @@
 #include <crtdbg.h>  
 
 using namespace std;
+
+int getInt() //gets input for an integer and loops if the input is bad / data type is incorrect calling this as a function is much easier, too.
+{
+	//the repo i used to prototype: https://repl.it/@NasirMuhammad/Bad-input-handling-in-C
+	//Currently trying to handle incorrect data types.
+
+	int num = 0;
+	cin >> num;
+
+	while (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //discard input
+
+		cout << "Incorrect data type was entered, please enter an integer." << endl;
+		cin >> num;
+	}
+
+	return num;
+}
 
 bool linearSearch(string word, string arr[], size_t length) //iterates through a list. returns true if the search was successful. take the size of the list as a parameter, in order to accurately get the size of a string array.
 {
@@ -63,10 +84,9 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 
 		else if (input == "addStart")
 		{
-			int value = 0;
 			cout << "------------------------------------------------------------------------------------" << endl;
 			cout << "\nPlease enter the desired value of the node: " << endl;
-			cin >> value; //the program spazzes when you enter something other than an integer.
+			int value = getInt(); //muych more efficent than always getting input within each command.
 			newList.pushNodeFront(value);
 			cout << "\nA new node was pushed to the front of the list, with value " << value << "." << endl;
 		}
@@ -84,16 +104,15 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 			for (int index = 0; index <= (sizeof(inputs) / sizeof(int) - 1); index++)
 			{
 				cout << "\nPlease enter the value of node " << index + 1 << ": " << endl;
-				cin >> inputs[index];
+				inputs[index] = getInt();
 			}
 			newList.bulkNodes(inputs[0], inputs[1],inputs[2], inputs[3], inputs[4]);
 		}
 
 		else if (input == "append")
 		{
-			int value = 0;
 			cout << "\nEnter the desired value of the node: " << endl;
-			cin >> value;
+			int value = getInt();
 			newList.appendNode(value);
 		}
 
@@ -104,29 +123,16 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 
 		else if (input == "insert") //from testing the code, what i can see is that the maximum index that you can insert at is the list length + 1.
 		{
-			int value = 0;
 			cout << "\nEnter the desired value of the node:" << endl;
-			cin >> value;
+			int value = getInt();
 
-			int index = 0;
 			cout << "\nEnter the desired index you wish to insert the node:" << endl;
-			cin >> index;
-
-			//the repo i'm using to prototype: https://repl.it/@NasirMuhammad/Bad-input-handling-in-C
-			//Currently trying to handle incorrect data types.
-
-			//while (cin.fail() == true)
-			//{
-			//	cin.clear();
-			//	cin >> index;
-			//}
-
-
+			int index = getInt();
 
 			while (index <= 1 || index >= newList.getLength() + 1)
 			{
 				cout << "Given index is outside of the scope of the array. please give an index in the range 1 to " << newList.getLength() << "." << endl;
-				cin >> index;
+				index = getInt();
 			}
 
 			newList.insert(value, index);
@@ -136,14 +142,13 @@ void UI() //the UI for the linked list. comment this out in main if you want to 
 		else if (input == "deleteIndex")
 		{
 
-			int index = 0;
 			cout << "\nEnter the desired index of the node you wish to delete:" << endl;
-			cin >> index;
+			int index = getInt();
 
 			while (index <= 1 || index >= newList.getLength() + 1)
 			{
 				cout << "Given index is outside of the scope of the array. please give an index in the range 1 to " << newList.getLength() << "." << endl;
-				cin >> index;
+				index = getInt();
 			}
 
 			newList.deleteIndex(index);
