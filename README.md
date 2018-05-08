@@ -1,4 +1,8 @@
-# Linked lists using smartpointers
+# Linked lists using smart pointers
+
+Firstly: what is a linked list? a linked list is a list in which each index has two things: it's data, and the location of the next index.
+
+
 Creates linked list(s) which uses shared instead of raw pointers in order to minimize the messy memory leaks.
 
 Just a quick note: i've wrapped the code in some Visual studio memory leak detecttion, just to make sure there are none.
