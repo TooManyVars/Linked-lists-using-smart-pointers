@@ -10,7 +10,7 @@ struct node
 
 public:
 	int data;
-	shared_ptr<node>next;
+	shared_ptr<node>next; //the next node in the list.
 
 	int getData() { return data; }
 	shared_ptr<node>getNextNode() { return next; }
