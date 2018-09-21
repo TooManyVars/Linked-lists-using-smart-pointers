@@ -9,7 +9,7 @@ struct node
 {
 
 public:
-	int data;
+	int data;//test
 	shared_ptr<node>next; //the next node in the list.
 
 	int getData() { return data; }
